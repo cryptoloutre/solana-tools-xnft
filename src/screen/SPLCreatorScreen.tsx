@@ -138,7 +138,7 @@ export function SPLCreatorScreen() {
   };
 
   return (
-    <View style={{ backgroundColor: "#111827" }}>
+    <View style={{ height: "100%", backgroundColor: "#111827" }}>
       <View
         style={{
           marginBottom: "38px",

@@ -8,6 +8,7 @@ import { CloseAccountScreen } from "./screen/CloseAccountScreen";
 import { SPLCreatorScreen } from "./screen/SPLCreatorScreen";
 import { SUATMMScreen } from "./screen/SUATMMScreen";
 import { BulkSenderScreen } from "./screen/BulkSenderScreen";
+import { UploadScreen } from "./screen/UploadScreen";
 
 //
 // On connection to the host environment, warm the cache.
@@ -50,6 +51,10 @@ export function App() {
             return {
               title: "Bulk Sender",
             };
+          case "upload":
+            return {
+              title: "Upload File",
+            };
           case "suatmm":
             return {
               title: "SUATMM",
@@ -67,6 +72,7 @@ export function App() {
       <Stack.Screen name={"revoke"} component={() => <RevokeScreen />} />
       <Stack.Screen name={"splCreator"} component={() => <SPLCreatorScreen />}/>
       <Stack.Screen name={"bulksender"} component={() => <BulkSenderScreen />}/>
+      <Stack.Screen name={"upload"} component={() => <UploadScreen />}/>
       <Stack.Screen name={"suatmm"} component={() => <SUATMMScreen />} />
     </Stack.Navigator>
   );

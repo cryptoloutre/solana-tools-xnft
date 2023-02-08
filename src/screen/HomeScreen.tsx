@@ -5,7 +5,7 @@ export function HomeScreen() {
     const nav = useNavigation();
 
     return (
-        <View style={{ backgroundColor: "#111827" }}>
+        <View style={{ height: "100%", backgroundColor: "#111827" }}>
           <View
             style={{
               marginRight: "20px",
@@ -163,7 +163,7 @@ export function HomeScreen() {
                   />
                 </Button>
               </View>
-              <View
+              {/* <View
                 style={{
                   marginLeft: "20px",
                   marginTop: "8px",
@@ -186,15 +186,15 @@ export function HomeScreen() {
                     }}
                   />
                 </Button>
-              </View>
-              <View
+              </View> */}
+              {/* <View
                 style={{
                   marginLeft: "20px",
                   marginTop: "8px",
                 }}
               >
                 <Button
-                  onClick={() =>nav.push("burnNFT")}
+                  onClick={() =>nav.push("upload")}
                   style={{
                     padding: 0,
                     width: "130px",
@@ -210,8 +210,8 @@ export function HomeScreen() {
                     }}
                   />
                 </Button>
-              </View>
-              <View
+              </View> */}
+              {/* <View
                 style={{
                   marginLeft: "20px",
                   marginTop: "8px",
@@ -234,7 +234,7 @@ export function HomeScreen() {
                     }}
                   />
                 </Button>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>

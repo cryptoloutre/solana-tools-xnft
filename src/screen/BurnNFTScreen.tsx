@@ -27,6 +27,7 @@ import {
 export function BurnNFTScreen() {
   const publickey = usePublicKey();
   const connection = useConnection();
+  const metaplex = new Metaplex(connection);
 
   const [NFTs, setNFTs] = useState<any | null>(null);
   const [isFetched, setIsFetched] = useState<boolean>(false);
@@ -38,11 +39,60 @@ export function BurnNFTScreen() {
 
   async function getUserNFTs() {
     const resp = await window.xnft.connection.customSplTokenAccounts(publickey);
-    const myNFTs = resp.nftMetadata.map((m) => m[1]);
-    setNFTs(myNFTs);
+    console.log("my tokens", resp);
+    const nftTokens = resp.nfts.nftTokens.map((m) => {
+      const mint = m.mint;
+      const account = m.key;
+      const uri = m.account?.data?.uri;
+      return { mint, account,  uri };
+    });
+    nftTokens.sort(function (a, b) {
+      if (a.mint < b.mint) {
+        return -1;
+      }
+      if (a.mint > b.mint) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("tokens", nftTokens)
+    const nftTokenMetadata = resp.nfts.nftTokenMetadata.map((m) => {
+      const mint = m.account.mint;
+      const uri = m.account.data.uri;
+      return { mint, uri };
+    });
+    nftTokenMetadata.sort(function (a, b) {
+      if (a.mint < b.mint) {
+        return -1;
+      }
+      if (a.mint > b.mint) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("token uri", nftTokenMetadata)
+    const myNFTsMetadata: any = [];
+  if (nftTokens[0] != undefined) {
+      for (let i = 0; i < nftTokens.length; i++) {
+        const mint = nftTokens[i].mint;
+        const account = nftTokens[i].account;
+        const uri = nftTokenMetadata[i].uri;
+        const response = await fetch(uri)
+        const data = await response.json();
+        const name = data["name"];
+        const image = data["image"];
+        myNFTsMetadata.push({
+          mint: mint,
+          account: account,
+          name: name,
+          uri: image,
+        });
+      }
+    setNFTs(myNFTsMetadata);
     setIsFetched(true);
-    console.log("my NFTs", myNFTs);
-  }
+    console.log("my NFTs", myNFTsMetadata);
+    }
+}
 
   useEffect(() => {
     getUserNFTs();
@@ -368,7 +418,7 @@ export function BurnNFTScreen() {
                       }}
                     >
                       <Image
-                        src={g.tokenMetaUriData.image}
+                        src={g.uri}
                         style={{
                           marginTop: "5px",
                           borderRadius: "6px",
@@ -385,7 +435,7 @@ export function BurnNFTScreen() {
                         marginLeft: "10px",
                       }}
                     >
-                      {g.metadata.data.name}
+                      {g.name}
                     </Text>
 
                     <View
@@ -397,8 +447,8 @@ export function BurnNFTScreen() {
                       }}
                     >
                       <SelectButton
-                        mint={g.metadata.mint}
-                        tokenAccount={g.publicKey}
+                        mint={g.mint}
+                        tokenAccount={g.account}
                       />
                     </View>
                   </View>

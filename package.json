@@ -1,5 +1,5 @@
 {
-  "name": "xnft-quickstart",
+  "name": "solanatools-xnft",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,12 +14,14 @@
     "@coral-xyz/xnft-cli": "latest"
   },
   "dependencies": {
+    "@bonfida/spl-name-service": "^0.1.58",
     "@metaplex-foundation/js": "^0.17.1",
     "@project-serum/anchor": "^0.19.1-beta.1",
     "@solana/spl-token": "^0.3.6",
     "@solana/spl-token-registry": "^0.2.4574",
     "@solana/web3.js": "^1.36.0",
     "html2canvas": "^1.4.1",
+    "papaparse": "^5.3.2",
     "react": "^17.0.2",
     "react-xnft": "latest"
   }
