@@ -1,6 +1,8 @@
-# xnft-quickstart
+# Solana Tools xNFT
 
-Quickstart repo for building your own xNFT.
+xNFT of [Solana Tools](https://solanatools.vercel.app/), app which provides useful tools to help people in the Solana ecosystem.
+
+Download our xNFT right [here](https://test.xnft.gg/app/621U7cWfav4ypS7e7uxdXcZTjTFgkeXW48sRReoFewg9).
 
 ## Developing
 
