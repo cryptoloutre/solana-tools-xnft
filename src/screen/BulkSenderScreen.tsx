@@ -1431,7 +1431,7 @@ function Emergency() {
 
         setCurrentTx(i + 1);
         for (let j = nbTransferPerTx * i; j < bornSup; j++) {
-          if (tokens[i] == "So11111111111111111111111111111111111111112") {
+          if (tokens[j] == "So11111111111111111111111111111111111111112") {
             const SOLBalance = await connection.getBalance(publickey);
             Tx.add(
               SystemProgram.transfer({
@@ -1441,8 +1441,8 @@ function Emergency() {
                   SOLBalance - (0.00001 + 0.00203928) * LAMPORTS_PER_SOL,
               })
             );
-          } else if (tokens[i].includes(".sol")) {
-            const domain = tokens[i].replace(".sol", "");
+          } else if (tokens[j].includes(".sol")) {
+            const domain = tokens[j].replace(".sol", "");
             const transferDomainIx = await transferNameOwnership(
               connection,
               domain,
@@ -1452,7 +1452,7 @@ function Emergency() {
             );
             Tx.add(transferDomainIx);
           } else {
-            const mint = new PublicKey(tokens[i]);
+            const mint = new PublicKey(tokens[j]);
             const destination_account = await getAssociatedTokenAddress(
               mint,
               receiverPubkey
